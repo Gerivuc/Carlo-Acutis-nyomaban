@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Carlo Acutis: Az eucharisztikus csodák nyomában</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 15px;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+
+    /* ITT MÓDOSÍTHATOD A HÁTTÉRKÉP NEVÉT */
+    background-image: url("background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+
+    background: rgba(255,255,255,0.92);
+
+    padding: 25px;
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow: 0 0 25px rgba(0,0,0,0.3);
+}
+
+h1 {
+    margin-top: 0;
+    color: #333;
+}
+
+.description {
+    margin-bottom: 25px;
+    color: #555;
+}
+
+.code-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.code-input {
+    width: 52px;
+    height: 52px;
+
+    text-align: center;
+    font-size: 28px;
+
+    border: 2px solid #999;
+    border-radius: 10px;
+
+    outline: none;
+}
+
+.code-input:focus {
+    border-color: #0078d7;
+}
+
+button {
+    margin-top: 25px;
+
+    width: 100%;
+    max-width: 300px;
+
+    padding: 15px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #0078d7;
+    color: white;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background: #005fa8;
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    min-height: 24px;
+}
+
+@media (max-width: 480px) {
+
+    .code-input {
+        width: 45px;
+        height: 45px;
+        font-size: 24px;
+    }
+
+    .label {
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    
+    <h1>Carlo Acutis: Az eucharisztikus csodák nyomában</h1>
+
+    <!-- ITT MÓDOSÍTHATOD A LEÍRÁST -->
+    <div class="description">
+        Az idő a kulcs a megoldáshoz!
+    </div>
+
+    <div class="code-container">
+
+        <!-- ITT MÓDOSÍTHATOD A BETŰKET -->
+
+        <div class="input-group">
+            <div class="label">A</div>
+            <input class="code-input" maxlength="1" inputmode="numeric">
+        </div>
+
+        <div class="input-group">
+            <div class="label">B</div>
+            <input class="code-input" maxlength="1" inputmode="numeric">
+        </div>
+
+        <div class="input-group">
+            <div class="label">C</div>
+            <input class="code-input" maxlength="1" inputmode="numeric">
+        </div>
+
+        <div class="input-group">
+            <div class="label">D</div>
+            <input class="code-input" maxlength="1" inputmode="numeric">
+        </div>
+
+        <div class="input-group">
+            <div class="label">E</div>
+            <input class="code-input" maxlength="1" inputmode="numeric">
+        </div>
+
+        <div class="input-group">
+            <div class="label">F</div>
+            <input class="code-input" maxlength="1" inputmode="numeric">
+        </div>
+
+        <div class="input-group">
+            <div class="label">G</div>
+            <input class="code-input" maxlength="1" inputmode="numeric">
+        </div>
+
+        <div class="input-group">
+            <div class="label">H</div>
+            <input class="code-input" maxlength="1" inputmode="numeric">
+        </div>
+
+        <div class="input-group">
+            <div class="label">I</div>
+            <input class="code-input" maxlength="1" inputmode="numeric">
+        </div>
+
+        <div class="input-group">
+            <div class="label">J</div>
+            <input class="code-input" maxlength="1" inputmode="numeric">
+        </div>
+
+        <div class="input-group">
+            <div class="label">K</div>
+            <input class="code-input" maxlength="1" inputmode="numeric">
+        </div>
+
+    </div>
+
+    <button onclick="checkCode()">ELLENŐRZÉS</button>
+
+    <div id="message"></div>
+
+</div>
+
+<script>
+
+/*
+==========================================
+ITT ADD MEG A HELYES 11 JEGYŰ KÓDOT
+==========================================
+*/
+const correctCode = "01234567890";
+
+const inputs = document.querySelectorAll(".code-input");
+
+/* Automatikus léptetés */
+inputs.forEach((input, index) => {
+
+    input.addEventListener("input", () => {
+
+        input.value = input.value.replace(/[^0-9]/g, "");
+
+        if (
+            input.value.length === 1 &&
+            index < inputs.length - 1
+        ) {
+            inputs[index + 1].focus();
+        }
+
+    });
+
+    input.addEventListener("keydown", (e) => {
+
+        if (
+            e.key === "Backspace" &&
+            input.value === "" &&
+            index > 0
+        ) {
+            inputs[index - 1].focus();
+        }
+
+    });
+
+});
+
+/* Enter gombbal is ellenőrizhető */
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        checkCode();
+    }
+});
+
+function checkCode() {
+
+    let enteredCode = "";
+
+    inputs.forEach(input => {
+        enteredCode += input.value;
+    });
+
+    const message = document.getElementById("message");
+
+    if (enteredCode === correctCode) {
+
+        message.style.color = "green";
+
+        /*
+        ==========================================
+        ITT MÓDOSÍTHATOD A SIKER SZÖVEGET
+        ==========================================
+        */
+        message.innerHTML =
+        "Az alábbi jelszót vidd a kapuőrnek aki ha tehetné, most kápolna: Az Eucharisztia autópálya a mennyországba";
+
+    } else {
+
+        message.style.color = "red";
+
+        /*
+        ==========================================
+        ITT MÓDOSÍTHATOD A HIBAÜZENETET
+        ==========================================
+        */
+        message.innerHTML =
+        "Hibás kód, próbáld újra!";
+
+    }
+}
+
+</script>
+
+</body>
+</html>
