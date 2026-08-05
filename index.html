@@ -157,57 +157,57 @@ button:hover {
         <!-- ITT MÓDOSÍTHATOD A BETŰKET -->
 
         <div class="input-group">
-            <div class="label">A</div>
+            <div class="label">1</div>
             <input class="code-input" maxlength="1" inputmode="numeric">
         </div>
 
         <div class="input-group">
-            <div class="label">B</div>
+            <div class="label">2</div>
             <input class="code-input" maxlength="1" inputmode="numeric">
         </div>
 
         <div class="input-group">
-            <div class="label">C</div>
+            <div class="label">3</div>
             <input class="code-input" maxlength="1" inputmode="numeric">
         </div>
 
         <div class="input-group">
-            <div class="label">D</div>
+            <div class="label">4</div>
             <input class="code-input" maxlength="1" inputmode="numeric">
         </div>
 
         <div class="input-group">
-            <div class="label">E</div>
+            <div class="label">5</div>
             <input class="code-input" maxlength="1" inputmode="numeric">
         </div>
 
         <div class="input-group">
-            <div class="label">F</div>
+            <div class="label">6</div>
             <input class="code-input" maxlength="1" inputmode="numeric">
         </div>
 
         <div class="input-group">
-            <div class="label">G</div>
+            <div class="label">7</div>
             <input class="code-input" maxlength="1" inputmode="numeric">
         </div>
 
         <div class="input-group">
-            <div class="label">H</div>
+            <div class="label">8</div>
             <input class="code-input" maxlength="1" inputmode="numeric">
         </div>
 
         <div class="input-group">
-            <div class="label">I</div>
+            <div class="label">9</div>
             <input class="code-input" maxlength="1" inputmode="numeric">
         </div>
 
         <div class="input-group">
-            <div class="label">J</div>
+            <div class="label">10</div>
             <input class="code-input" maxlength="1" inputmode="numeric">
         </div>
 
         <div class="input-group">
-            <div class="label">K</div>
+            <div class="label">11</div>
             <input class="code-input" maxlength="1" inputmode="numeric">
         </div>
 
@@ -226,7 +226,7 @@ button:hover {
 ITT ADD MEG A HELYES 11 JEGYŰ KÓDOT
 ==========================================
 */
-const correctCode = "01234567890";
+const correctCode = "39317742364";
 
 const inputs = document.querySelectorAll(".code-input");
 
@@ -269,23 +269,44 @@ document.addEventListener("keydown", function(e) {
 
 function checkCode() {
 
+    const message = document.getElementById("message");
+
     let enteredCode = "";
+    let allCorrect = true;
 
     inputs.forEach(input => {
         enteredCode += input.value;
     });
 
-    const message = document.getElementById("message");
+    inputs.forEach((input, index) => {
 
-    if (enteredCode === correctCode) {
+        input.style.backgroundColor = "";
+        input.style.border = "2px solid #999";
+
+        if (input.value === "") {
+            allCorrect = false;
+            return;
+        }
+
+        if (input.value === correctCode[index]) {
+
+            input.style.border = "3px solid #28a745";
+            input.style.backgroundColor = "#eaf9ee";
+
+        } else {
+
+            input.style.border = "3px solid #dc3545";
+            input.style.backgroundColor = "#fdeaea";
+
+            allCorrect = false;
+        }
+
+    });
+
+    if (allCorrect) {
 
         message.style.color = "green";
 
-        /*
-        ==========================================
-        ITT MÓDOSÍTHATOD A SIKER SZÖVEGET
-        ==========================================
-        */
         message.innerHTML =
         "Az alábbi jelszót vidd a kapuőrnek aki ha tehetné, most kápolna: Az Eucharisztia autópálya a mennyországba";
 
@@ -293,11 +314,6 @@ function checkCode() {
 
         message.style.color = "red";
 
-        /*
-        ==========================================
-        ITT MÓDOSÍTHATOD A HIBAÜZENETET
-        ==========================================
-        */
         message.innerHTML =
         "Hibás kód, próbáld újra!";
 
@@ -305,6 +321,7 @@ function checkCode() {
 }
 
 </script>
+
 
 </body>
 </html>
